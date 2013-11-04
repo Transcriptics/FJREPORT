@@ -49,8 +49,8 @@ public class PiggyLetter extends JFrame {
 		report.setValue("content1", 
 			  "Dear Professor:\n"
 			+ "     This is a test to see if "
-			+ "this works fine, March the "
-			+ "the eighth, at ten o'clock?  We are "
+			+ "this works fine. Presummibly "
+			+ "it does, at ten o'clock?  We are "
 			+ "planning a small, costume dance."
 			);
 		report.setValue("signature1", "Piggy Dancer");
