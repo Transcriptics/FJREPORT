@@ -1,0 +1,100 @@
+# Free Java Report
+
+# editor button caption
+editor\ title = rapport desginer
+btnLineCaption = ligne
+btnCellCaption = cellule
+btnClearCaption = clair
+btnEditCaption = r関iser
+btnPageCaption = page
+btnPrintCaption = caract鑢es
+btnSaveCaption = sauver
+btnLoadCaption = ouvert
+
+
+btnOKCaption = confirmer
+btnCancelCaption = annuler
+
+# editor button tooltips
+btnLineHint = configurate propri閠� de ligne
+btnClearHint = enlevez toutes les lignes et les cellules
+btnCellHint = configurate propri閠� de cellule
+btnEditHint = r関iser rapport
+btnPageHint =  organisation de format de page
+btnPrintHint = imprimez le rapport
+btnCloseHint = sortie
+btnSaveHint = sauvez au dossier
+btnLoadHint = lisez du dossier
+
+removePageHint = enlevez la page actuelle
+newPageHint = ins閞ez une nouvelle page
+nextPageHint = page suivante
+prePageHint = page pr閏閐ente
+firstPageHint = goto first page
+lastPageHint = allez � la premi鑢e page
+btnBoldHint = fonte audacieuse
+btnItalicHint = fonte italique
+btnLeftHint = alignement gauche 
+btnCenterHint = alignement de centre
+btnRightHint = alignement juste
+
+comboFontHint = choisissez la fonte
+comboSizeHint = choisissez la grandeur de fonte
+
+drawLineStatus = ligne d'attraction
+desginCellStatus = grilles de design
+editStatus = r関iser
+clearStatus = clair complet
+
+#messages
+confirmDeletePageMsg = 蕋es-vous s鹯s d'enlever cette page?
+confirmDeletePageDlgTitle = effacez confirment
+confirmClearPageMsg = 蕋es-vous s鹯s de d間ager cette page ?
+confirmClearPageDlgTitle = clair confirment
+
+#Line Editor
+lineEditorLableLine = courant: 
+lineEditorTypeTitle = Type
+lineEditorWidthTitle = Largeur
+lineEditorInvisibleCaption = Invisible
+lineEditorTitle = Propri閠閟 de Ligne
+
+#Cell Editor
+cellEditorName =nom
+cellEditorContent=valeur
+cellEditorType=type
+cellEditorOption=combo options
+cellEditorTitle=propri閠閟 de cellule
+cellEditorMargin=marge
+cellTopMargin=haut
+cellLeftMargin=gauche
+cellBottomMargin=fond
+cellRightMargin=juste
+
+#cell type description
+cellType0=empty
+cellType1=label
+cellType2=textField
+cellType3=textArea
+cellType4=comboBox
+cellType5=checkBox
+cellType6=dateField
+cellType7=image
+cellType8=custom
+
+#datePicker 
+dayOfWeekName = D L M M J V S
+invalidDateFormatMsg = Format sans fondement de ficelle de date.
+
+#paged table print, Setting table column visibilities
+columnVisibleTbTitle1 = visible
+columnVisibleTbTitle2 = titre de colonne
+columnVisibleDlgTitle = configurate visibilit� de colonne
+
+
+#about dialog
+rights=tous droits r閟erv閟
+
+
+#multi page message
+pageMessage = page %p of %totalpage
