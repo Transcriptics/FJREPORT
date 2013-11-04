@@ -1,0 +1,98 @@
+# Free Java Report
+
+# editor button caption
+editor\ title = 报表编辑器
+btnLineCaption = 画线
+btnCellCaption = 表格
+btnClearCaption = 清空
+btnEditCaption = 编辑
+btnPageCaption = 页面
+btnPrintCaption = 打印
+btnSaveCaption = 保存
+btnLoadCaption = 打开
+
+btnOKCaption = 确定
+btnCancelCaption = 取消
+
+# editor button tooltips
+btnLineHint = 设计线段形状、线宽、位置
+btnClearHint = 清空当前页所有线段和表格(页边界除外)
+btnCellHint = 设置格子属性
+btnEditHint = 编辑表格内容
+btnPageHint =  打印页面设置
+btnPrintHint = 打印
+btnCloseHint = 关闭
+btnSaveHint = 保存到文件
+btnLoadHint = 从文件中读取
+
+removePageHint = 删除当前页
+newPageHint = 新增一页
+nextPageHint = 下一页
+prePageHint = 上一页
+firstPageHint = 第一页
+lastPageHint = 最后一页
+btnBoldHint = 黑体
+btnItalicHint = 斜体
+btnLeftHint = 字体左对齐
+btnCenterHint = 字体居中对齐
+btnRightHint = 字体右对齐
+
+comboFontHint = 选择字体
+comboSizeHint = 修改字体大小
+
+drawLineStatus = 画线
+desginCellStatus = 设计表格
+editStatus = 编辑
+clearStatus = 清空完毕
+
+#messages
+confirmDeletePageMsg = 确定要删除这一页吗？
+confirmDeletePageDlgTitle = 删除确认
+confirmClearPageMsg = 确定要清除报表吗？
+confirmClearPageDlgTitle = 清除确认
+
+#Line Editor
+lineEditorLableLine = 当前线段
+lineEditorTypeTitle = 线型
+lineEditorWidthTitle = 线宽
+lineEditorInvisibleCaption = 不可见
+lineEditorTitle = 线段属性
+
+#Cell Editor
+cellEditorName =名称
+cellEditorContent=内容
+cellEditorType=类型
+cellEditorOption=下拉框选项
+cellEditorTitle=编辑格子属性
+cellEditorMargin=格子边界缩进
+cellTopMargin=上
+cellLeftMargin=左
+cellBottomMargin=下
+cellRightMargin=右
+
+#cell type description
+cellType0=空白格子
+cellType1=文字标签
+cellType2=单行编辑框
+cellType3=多行编辑框
+cellType4=下拉框
+cellType5=选择框
+cellType6=日期选择框
+cellType7=图像
+cellType8=自定义
+
+#datePIcker
+dayOfWeekName = 日 一 二 三 四 五 六
+invalidDateFormatMsg = 日期格式不对！
+
+#paged table print, Setting table column visibilities
+columnVisibleTbTitle1 = 可见
+columnVisibleTbTitle2 = 列名
+columnVisibleDlgTitle = 编辑可见列
+previewTitle = 打印预览
+
+#about dialog
+rights=山，梦醒时我在哪里；水，迷醉时我们一同远去。
+
+#multi page message
+pageMessage = 第%p页，共%totalpage页

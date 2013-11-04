@@ -1,0 +1,15 @@
+4.0 release
+1. support image cell
+2. support column visibility setting of pagedtable. double click the table on preview page to activate column visibility setting dialog.
+3. complete comments of main class FJReport.
+4. write a report sample, see samples directory.
+
+4.1 release
+some bugs fixed
+add French language translation
+
+4.2 release
+fix landscape orientation page save/load error.
+fix cell font setting error.
+add numeric id to line and cell
+add Zoom class, zoom function is not yet completed
