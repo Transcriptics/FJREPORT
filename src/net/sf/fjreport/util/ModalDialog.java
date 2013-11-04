@@ -132,7 +132,7 @@ public class ModalDialog extends JDialog{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		JPanel p = new JPanel();
-		p.setPreferredSize(new Dimension(200, 60));
+		p.setPreferredSize(new Dimension(400, 60));
 		if (doModal(null, p, "Test Modal Dialog")) System.out.println("Choose ok");
 		else System.out.println("Choose cancel");
 		System.exit(0);
