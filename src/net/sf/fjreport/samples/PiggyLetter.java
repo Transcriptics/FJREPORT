@@ -101,7 +101,16 @@ public class PiggyLetter extends JFrame {
 	
 	
 	public static void main(String[] args) {
+		
+		java.util.Date olderDate= new java.util.Date();
+		 
         new PiggyLetter();
+		 
+		java.util.Date newerDate= new java.util.Date();
+		
+		long diffInMillis =    newerDate.getTime() - olderDate.getTime();
+				
+		System.out.print("Total execution time: " + diffInMillis + "ms");
 	}
 
 }

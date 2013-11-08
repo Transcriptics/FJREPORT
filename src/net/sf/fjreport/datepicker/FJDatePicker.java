@@ -308,18 +308,17 @@ public class FJDatePicker extends JPanel{
 	public static Date pickDate(Date originDate, Frame parent, String title){
 		final FJDatePicker dp = new FJDatePicker(originDate);
 		dp.dlg = new JDialog(parent, title, true);
-		dp.dlg.setSize(new Dimension(width+10, height+32));
-		dp.dlg.add(dp, "Center");
-		dp.dlg.setResizable(false);
 		dp.dlg.setLocationRelativeTo(parent);
-		dp.dlg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		addDatePickerAttributes(10,32,dp);
+		
 		dp.dlg.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent arg0) {
 				if (dp.modalResult != true) dp.setValue(originalDate);
 				super.windowClosing(arg0);
 			}
 		});
-		dp.dlg.setVisible(true);
+		
 		return dp.getValue();
 	}
 	
@@ -327,19 +326,29 @@ public class FJDatePicker extends JPanel{
 		final FJDatePicker dp = new FJDatePicker(originDate);
 		dp.editor = editor;
 		dp.dlg = new JDialog((Frame)null, true);
-		dp.dlg.setSize(new Dimension(width+4, height+6));		
-		dp.dlg.add(dp, "Center");
-		dp.dlg.setResizable(false);
 		dp.dlg.setLocation(x, y);
-		dp.dlg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		addDatePickerAttributes(4,6,dp);
+		
 		dp.dlg.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent arg0) {
 				if (dp.modalResult != true) dp.setValue(originalDate);
 				super.windowClosing(arg0);
 			}
 		});
+		
 		dp.dlg.setUndecorated(true);
-		dp.dlg.setVisible(true);
+	}
+	
+	public static void addDatePickerAttributes(int x, int y, FJDatePicker dp){	
+	
+	dp.dlg.setSize(new Dimension(width+x, height+y));
+	dp.dlg.add(dp, "Center");
+	dp.dlg.setResizable(false);
+	dp.dlg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+	dp.dlg.setVisible(true);
+	
 	}
 	
 	public static void main(String[] args) {
