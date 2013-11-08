@@ -71,7 +71,7 @@ public class Cell extends Rectangle{
 	public static final int ALIGN_RIGHT = 2;
 	private Font font = defaultFont;
 
-	private boolean selecteda;
+	private boolean selected;
 	
 	private String[] comboxOptions;
 	private static final Insets DEFAULT_MARGIN = new Insets(0, 0, 0, 0);
