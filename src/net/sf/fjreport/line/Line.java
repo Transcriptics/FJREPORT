@@ -15,6 +15,7 @@ import net.sf.fjreport.FJReport;
 
 public class Line implements Comparable {
 
+	private LineProduct lineProduct = new LineProduct();
 	private int lineType;
 	public static final int LINE_NORMAL = 0;
 	public static final int LINE_DOT = 1;
@@ -22,7 +23,6 @@ public class Line implements Comparable {
 	public static final int LINE_DASH_DOT = 3;
 	public static final int LINE_DOUBLE = 4;
 	
-	private int borderType = 0;
 	public static final int BORDER_NONE = 0;
 	public static final int BORDER_UP = 1;
 	public static final int BORDER_LEFT = 2;
@@ -184,14 +184,14 @@ public class Line implements Comparable {
 	}
 
 	public int getBorderType() {
-		return borderType;
+		return lineProduct.getBorderType();
 	}
 
 	public void setBorderType(int borderType) {
-		this.borderType = borderType;
+		lineProduct.setBorderType(borderType);
 	}
 	public boolean isBorder(){
-		return (borderType > 0);
+		return lineProduct.isBorder();
 	}
 
 }
