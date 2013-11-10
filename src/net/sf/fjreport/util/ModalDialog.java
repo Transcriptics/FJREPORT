@@ -88,27 +88,13 @@ public class ModalDialog extends JDialog{
 		setVisible(false);
 	}
 	
-	public static boolean doModal(Component parent, JPanel contentPane, String title){
-		ModalDialog dlg;
-		if (parent == null) dlg = new ModalDialog(null, contentPane);
-		else dlg = new ModalDialog(JOptionPane.getFrameForComponent(parent), contentPane);
-		dlg.setTitle(title);
-		Dimension d = contentPane.getPreferredSize();
-		if (d == null || d.width < 60 || d.height < 60) 
-			dlg.setSize(300, 300);
-		else {
-			dlg.setSize(Math.min(Toolkit.getDefaultToolkit().getScreenSize().width,	d.width),
-					Math.min(Toolkit.getDefaultToolkit().getScreenSize().height-50, d.height+30));
-		}
-		dlg.setLocationRelativeTo(null);
-		dlg.setResizable(false);
-		modalResult = false;
-		dlg.setVisible(true);
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(dlg.keyListener);
-		return modalResult;
+	public static boolean doModal(Component parent, JPanel contentPane, String title){	
+		return doModalSticky(parent,contentPane,title,null);
 	}
 	
+
 	public static boolean doModalSticky(Component parent, JPanel contentPane, String title, Rectangle bounds){
+		
 		ModalDialog dlg;
 		if (parent == null) dlg = new ModalDialog(null, contentPane);
 		else dlg = new ModalDialog(JOptionPane.getFrameForComponent(parent), contentPane);
@@ -120,8 +106,15 @@ public class ModalDialog extends JDialog{
 			dlg.setSize(Math.min(Toolkit.getDefaultToolkit().getScreenSize().width,	d.width),
 					Math.min(Toolkit.getDefaultToolkit().getScreenSize().height-50, d.height+30));
 		}
-		dlg.setBounds(bounds);
-		dlg.setUndecorated(true);
+		
+		if(bounds == null) {
+			dlg.setLocationRelativeTo(null);
+		}
+		else {
+			dlg.setBounds(bounds);
+			dlg.setUndecorated(true);
+		}
+		
 		dlg.setResizable(false);
 		modalResult = false;
 		dlg.setVisible(true);
