@@ -77,6 +77,7 @@ public class FJReport extends JPanel implements Printable, Scrollable, HasStatus
 	private PageFormat pageFormat;
 	private boolean editting;
 	private BaseControl operation;
+	
 	private int state;
 
 	/**
