@@ -22,8 +22,8 @@ import javax.swing.JTextField;
 
 public class FJDateField extends JTextField{
 
+	private FJDateFieldProduct fJDateFieldProduct = new FJDateFieldProduct();
 	public static DateFormat defaultDf = new SimpleDateFormat("yyyy-MM-dd");
-	private DateFormat dateFormat = defaultDf;
 	private Date value;
 	
 	
@@ -50,7 +50,7 @@ public class FJDateField extends JTextField{
 				if (getText() == null || getText().equals("")) value = null;
 				else {
 					try {
-						value = dateFormat.parse(getText());
+						value = fJDateFieldProduct.getDateFormat().parse(getText());
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 //						JOptionPane.showMessageDialog((Component) arg0.getSource(), StringResource.getString("invalidDateFormatMsg"));
@@ -88,35 +88,17 @@ public class FJDateField extends JTextField{
 		return value;
 	}
 
-	public void setValue(Date value) {
-		this.value = value;
-		if (value != null)
-			setText(dateFormat.format(value));
-		else
-			setText("");
-	}
-	public String getDateStr() {
-		if (value == null || value.equals("")) return "";
-		else return dateFormat.format(getValue());
-	}
+
 	public void setDateStr(String dateStr) {
-		try {
-			if (dateStr != null && dateStr != "")
-				setValue(dateFormat.parse(dateStr));
-			else
-				setValue(null);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		fJDateFieldProduct.setDateStr(dateStr, this);
 	}
 
 	public DateFormat getDateFormat() {
-		return dateFormat;
+		return fJDateFieldProduct.getDateFormat();
 	}
 
 	public void setDateFormat(DateFormat dateFormat) {
-		this.dateFormat = dateFormat;
+		fJDateFieldProduct.setDateFormat(dateFormat);
 	}
 
 	public static void main(String[] args) {
@@ -131,5 +113,11 @@ public class FJDateField extends JTextField{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
+	public void setValue(Date value) {
+		this.value = value;
+		fJDateFieldProduct.setValue(value, this);
+	}
+
 
 }
