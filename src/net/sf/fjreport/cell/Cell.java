@@ -601,5 +601,17 @@ public class Cell extends Rectangle{
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public String getTitle() {
+		return (String) getValue();
+	}
+
+	public String getFooter() {
+		return (String) getValue();
+	}
+
+	public String getHeader() {
+		return (String) getValue();
+	}
 	
 }

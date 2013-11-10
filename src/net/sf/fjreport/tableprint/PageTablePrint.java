@@ -172,16 +172,6 @@ public class PageTablePrint extends JPanel implements Printable,
 		headerCell.setValue(header);
 		headerStr = header;
 	}
-	public String getTitle(){
-		return (String) titleCell.getValue();
-	}
-	public String getFooter() {
-		return (String) footerCell.getValue();
-	}
-	public String getHeader() {
-		return (String) headerCell.getValue();
-	}
-	
 	public int getFooterAlignment() {
 		return footerCell.getAlignment();
 	}
