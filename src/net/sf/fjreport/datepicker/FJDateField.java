@@ -116,7 +116,7 @@ public class FJDateField extends JTextField{
 
 	public void setValue(Date value) {
 		this.value = value;
-		fJDateFieldProduct.setValue(value, this);
+		//fJDateFieldProduct.setValue(value, this);
 	}
 
 

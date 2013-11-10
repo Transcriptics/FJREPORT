@@ -8,12 +8,14 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.print.PageFormat;
@@ -31,7 +33,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -40,15 +41,18 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
 import javax.swing.Scrollable;
+import javax.swing.SwingConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-
 import org.xml.sax.SAXException;
 
 
 import net.sf.fjreport.cell.Cell;
 import net.sf.fjreport.cell.CellMouseControl;
+import net.sf.fjreport.control.AboutDialogAction;
 import net.sf.fjreport.control.BaseControl;
 import net.sf.fjreport.control.NewPageAction;
 import net.sf.fjreport.control.NextPageAction;
@@ -59,6 +63,7 @@ import net.sf.fjreport.io.ReportFileFilter;
 import net.sf.fjreport.line.Line;
 import net.sf.fjreport.line.LineMouseControl;
 import net.sf.fjreport.statusbar.HasStatus;
+import net.sf.fjreport.statusbar.JStatusBar;
 import net.sf.fjreport.statusbar.StatusChangeListener;
 import net.sf.fjreport.util.CommonUtil;
 import net.sf.fjreport.util.StringResource;
@@ -1175,5 +1180,176 @@ public class FJReport extends JPanel implements Printable, Scrollable, HasStatus
 //	}
 	public int getLineID() {
 		return currentPage.getLineID();
+	}
+
+	public void createUI(final JStatusBar statusBar, FJReportEditor fJReportEditor) {
+		JScrollPane sc = new JScrollPane(this);
+		addStatusChangeListener(new StatusChangeListener() {
+			public void statusChange(int messageType, String message) {
+				statusBar.setContent(messageType, message);
+			}
+		});
+		JToolBar toolbar = new JToolBar(JToolBar.VERTICAL);
+		JButton btnLine = new JButton(
+				StringResource.getString("btnLineCaption"));
+		JButton btnClear = new JButton(
+				StringResource.getString("btnClearCaption"));
+		JButton btnCell = new JButton(
+				StringResource.getString("btnCellCaption"));
+		JButton btnEdit = new JButton(
+				StringResource.getString("btnEditCaption"));
+		JButton btnPrintSetup = new JButton(
+				StringResource.getString("btnPageCaption"));
+		final JButton btnPrint = new JButton(
+				StringResource.getString("btnPrintCaption"));
+		JButton btnSave = new JButton(
+				StringResource.getString("btnSaveCaption"));
+		JButton btnLoad = new JButton(
+				StringResource.getString("btnLoadCaption"));
+		btnLine.setToolTipText(StringResource.getString("btnLineHint"));
+		btnClear.setToolTipText(StringResource.getString("btnClearHint"));
+		btnCell.setToolTipText(StringResource.getString("btnCellHint"));
+		btnEdit.setToolTipText(StringResource.getString("btnEditHint"));
+		btnPrintSetup.setToolTipText(StringResource.getString("btnPageHint"));
+		btnPrint.setToolTipText(StringResource.getString("btnPrintHint"));
+		btnSave.setToolTipText(StringResource.getString("btnSaveHint"));
+		btnLoad.setToolTipText(StringResource.getString("btnLoadHint"));
+		btnLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setState(FJReport.DRAWLINE_STATE);
+				btnPrint.setEnabled(false);
+				statusBar.setContent(0,
+						StringResource.getString("drawLineStatus"));
+			}
+		});
+		btnCell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setState(FJReport.CELL_STATE);
+				btnPrint.setEnabled(false);
+				statusBar.setContent(0,
+						StringResource.getString("desginCellStatus"));
+			}
+		});
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setState(FJReport.EDIT_STATE);
+				btnPrint.setEnabled(true);
+				statusBar.setContent(0, StringResource.getString("editStatus"));
+			}
+		});
+		final FJReport tmp = this;
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (JOptionPane.showConfirmDialog(
+						JOptionPane.getFrameForComponent(tmp),
+						StringResource.getString("confirmClearPageMsg"),
+						StringResource.getString("confirmClearPageDlgTitle"),
+						JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+					return;
+				clear();
+				statusBar.setContent(0, StringResource.getString("clearStatus"));
+			}
+		});
+		btnPrintSetup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				printSetup();
+			}
+		});
+		btnPrint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				print();
+			}
+		});
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				saveDialog();
+			}
+		});
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				File file = loadDialog();
+				if (file != null)
+					FJReportEditor.mainFrame.setTitle(StringResource
+							.getString("editor title") + " - " + file.getName());
+			}
+		});
+		FlowLayout g = new FlowLayout();
+		g.setVgap(1);
+		toolbar.setLayout(g);
+		toolbar.setPreferredSize(new Dimension(82, 50));
+		toolbar.add(btnLine);
+		toolbar.add(btnCell);
+		toolbar.add(btnEdit);
+		toolbar.add(btnClear);
+		toolbar.add(btnPrintSetup);
+		toolbar.add(btnPrint);
+		toolbar.add(btnSave);
+		toolbar.add(btnLoad);
+		Dimension btnSize = new Dimension(80, 34);
+		btnLine.setPreferredSize(btnSize);
+		btnClear.setPreferredSize(btnSize);
+		btnCell.setPreferredSize(btnSize);
+		btnEdit.setPreferredSize(btnSize);
+		btnPrintSetup.setPreferredSize(btnSize);
+		btnPrint.setPreferredSize(btnSize);
+		btnSave.setPreferredSize(btnSize);
+		btnLoad.setPreferredSize(btnSize);
+		Insets insets = new Insets(0, 0, 0, 0);
+		btnLine.setMargin(insets);
+		btnClear.setMargin(insets);
+		btnEdit.setMargin(insets);
+		btnCell.setMargin(insets);
+		btnPrintSetup.setMargin(insets);
+		btnPrint.setMargin(insets);
+		btnSave.setMargin(insets);
+		btnLoad.setMargin(insets);
+		JToolBar upperToolbar = new JToolBar();
+		JPanel toolbarPane = getEditToolBarPane();
+		JButton btnAbout = new JButton(new AboutDialogAction());
+		btnAbout.setPreferredSize(new Dimension(28, 28));
+		toolbarPane.add(btnAbout);
+		upperToolbar.add(toolbarPane);
+		fJReportEditor.add(upperToolbar, "North");
+		sc.setFocusable(true);
+		sc.grabFocus();
+		setFocusable(true);
+		grabFocus();
+		addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent arg0) {
+				System.out.println(arg0.getKeyChar());
+			}
+
+			public void keyPressed(KeyEvent arg0) {
+			}
+
+			public void keyReleased(KeyEvent arg0) {
+			}
+		});
+		sc.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent arg0) {
+				System.out.println(arg0.getKeyChar());
+			}
+
+			public void keyPressed(KeyEvent arg0) {
+			}
+
+			public void keyReleased(KeyEvent arg0) {
+			}
+		});
+		fJReportEditor.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent arg0) {
+				System.out.println(arg0.getKeyChar());
+			}
+
+			public void keyPressed(KeyEvent arg0) {
+			}
+
+			public void keyReleased(KeyEvent arg0) {
+			}
+		});
+		fJReportEditor.add(toolbar, "East");
+		fJReportEditor.add(sc, "Center");
+		fJReportEditor.add(statusBar, "South");
+		firstPage();
 	}
 }
